@@ -102,11 +102,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "unnokid"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
-  email            :
+  bio              : "unnokid의 홈페이지 입니다"
+  location         : "Republic of Korea"
+  email            : "kim_0609@naver.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"

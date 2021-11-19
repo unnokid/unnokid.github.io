@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Java 버젼별 차이점 정리"
+title: "Java 버젼별 차이점"
 ---
 
 

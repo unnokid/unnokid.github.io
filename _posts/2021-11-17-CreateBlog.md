@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: 
 title: "github 블로그 만들기"
 ---
 # 웹 호스팅이란

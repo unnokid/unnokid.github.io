@@ -224,7 +224,7 @@ Switch 문은 Primitive 자료형이나 Enumerated 자료형을 사용할 수 �
  Multi-catch 기능은 예외처리를 하기 위해 과도한 블록 생성을 하지 않는 방법이다.
 
   ```
-   // Before Java 7
+   // Before Jdk 7
   public void oldMultiCatch() {
     try {
       methodThatThrowsThreeExceptions();
@@ -237,7 +237,7 @@ Switch 문은 Primitive 자료형이나 Enumerated 자료형을 사용할 수 �
     }
   }
 
-  // In Java 7
+  // In Jdk 7
   public void newMultiCatch() {
     try {
       methodThatThrowsThreeExceptions();
@@ -291,7 +291,7 @@ Switch 문은 Primitive 자료형이나 Enumerated 자료형을 사용할 수 �
   하지만 Jdk 7 부터는 조금 더 정확한 Exception을 전달 할 수 있다.
 
   ```
-  // Before Java 7
+  // Before Jdk 7
 public void obscure() throws Exception {
     try {
         new FileInputStream("abc.txt").read();
@@ -302,7 +302,7 @@ public void obscure() throws Exception {
     }
 }
 
-// In Java 7
+// In Jdk 7
 public void precise() throws ParseException, IOException {
     try {
         new FileInputStream("abc.txt").read();

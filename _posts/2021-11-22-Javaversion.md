@@ -5,7 +5,6 @@ title: "Java 버젼별 정리(5~17)"
 
 Java 버전들의 추가된 기능과 변해 가는 과정을 정리하려고 한다.
 
-루나햄 다음엔 잘뽑아줄게
 # JDK 5
 2004년 9월 30일 발표, 일반 지원은 2009년 9월, 연장 지원은 2015년 5월에 종료되었다.
 
@@ -389,11 +388,28 @@ java.nio.file 패키지가 추가되었다.
 <details>
 <summary>Default Method</summary>
 <div markdown="1">
-intefrace 안에 구현된 메소드를 추가해야 할 때 default 키워드를 붙여준다.
+  인터페이스는 메소드 정의만 할 수 있었고 구현을 할 수 없었지만 Jdk 8부터 Defalut method라는 개념이 생겨서 구현 내용도 인터페이스에 포함 시킬 수 있다.
   
-  하위 호환성을 위해서 이미 많은 사람이 사용하고 있는 인터페이스에 새로운 메소드를 추가해야 할 때 기존 방식대로 추가하면 이미 사용하고 있는 사람들은 전부 오류가 발생하고 수정해야하는 일이 발생한다. 이럴 때 사용 할 수 있다.
+  
   ```
+  public interface Vehicle{
+      public void doSomething(int n);
+  }
   ```
+ 
+  Default Method를 사용하면 구현내용도 인터페이스에 포함시킬 수 있다. 아래 예시처럼 메소드앞에 `default` 키워드를 입력하고 구현내용을 추가하면 된다.
+  
+  ```
+  public interface Vehicle{
+      public default void doSomething(int n){
+          System.out.println("doSomething(Vehicle)");
+      }
+  }
+  ```
+  
+  디폴트 메소드가 구현된 인터페이스도 상속받을 수 있다. 클래스가 디폴트 메소드가 정의된 인터페이스를 implements 하면 자동으로 구현이 된다.
+  
+  >추상 클래스 vs 인터페이스
 </div>
 </details>
 

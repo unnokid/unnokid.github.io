@@ -316,9 +316,97 @@ public void precise() throws ParseException, IOException {
 </div>
 </details>
 
-
+<details>
+<summary>Java NIO 2.0</summary>
+<div markdown="1">
+java.nio.file 패키지가 추가되었다.
+  
+  전에는 꽤나 길고 복잡한 파일 코드를 사용했어야 했지만 간단하게 기본 시스템 파일에 접근이 가능하고 다양한 파일I/O기능을 제공하는 등 외부라이브러리로 해결했던 많은 일들이 JDK API로 추가되었다.
+  
+  
+</div>
+</details>
 
   
+# JDK 8
+  
+  2014년 3월 18일 발표, 일반 지원은 2019년 1월에 종료되었고, 연장 지원은 2023년 9월에 종료될 예정이다.
+  
+<details>
+<summary>Lambde 표현식</summary>
+<div markdown="1">
 
+  ```
+  ```
+</div>
+</details>
+  
+  
+<details>
+<summary>Default Method</summary>
+<div markdown="1">
+intefrace 안에 구현된 메소드를 추가해야 할 때 default 키워드를 붙여준다.
+  
+  하위 호환성을 위해서 이미 많은 사람이 사용하고 있는 인터페이스에 새로운 메소드를 추가해야 할 때 기존 방식대로 추가하면 이미 사용하고 있는 사람들은 전부 오류가 발생하고 수정해야하는 일이 발생한다. 이럴 때 사용 할 수 있다.
+  ```
+  ```
+</div>
+</details>
 
   
+<details>
+<summary>함수형 인터페이스</summary>
+<div markdown="1">
+
+  ```
+  ```
+</div>
+</details>
+
+
+<details>
+<summary>Stream</summary>
+<div markdown="1">
+
+  ```
+  ```
+</div>
+</details>
+
+
+<details>
+<summary>Optional</summary>
+<div markdown="1">
+
+  ```
+  ```
+</div>
+</details>
+  
+<details>
+<summary>날짜 관련 클래스 추가</summary>
+<div markdown="1">
+
+  ```
+  ```
+</div>
+</details>
+
+  
+<details>
+<summary>병렬 배열 정렬</summary>
+<div markdown="1">
+
+  ```
+  ```
+</div>
+</details>
+  
+<details>
+<summary>String Joiner</summary>
+<div markdown="1">
+
+  ```
+  ```
+</div>
+</details>

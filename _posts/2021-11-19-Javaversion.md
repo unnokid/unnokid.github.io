@@ -3,11 +3,12 @@ layout: single
 title: "Java 버젼별 정리(5~17)"
 ---
 
+Java 버전들의 추가된 기능과 변해 가는 과정을 정리하려고 한다.
 
 # JDK 5
 2004년 9월 30일 발표, 일반 지원은 2009년 9월, 연장 지원은 2015년 5월에 종료되었다.
 
-이 버젼부터 버젼이름의 앞부분인 1을 빼버리고 표기하기 시작했다. 
+이때부터 버전 앞부분 1을 빼버리고 표기하기 시작했다. 
 <details>
 <summary>Generics</summary>
 <div markdown="1">
@@ -123,3 +124,196 @@ title: "Java 버젼별 정리(5~17)"
 </details>
   
 # JDK 6
+  2006년 12월 11일 발표, 일반 지원은 2013년 2월에 종료되었으며, 연장 지원은 2018년 12월에 종료되었다. 이때부터 표기가 J2SE에서 Java SE로 바뀌었다.
+  
+  
+  
+  
+  
+# JDK 7
+  2011년 7월 7일 발표, 일반 지원은 2015년 4월에 종료되었으며, 연장 지원은 2022년 7월에 종료될 예정이다. 
+<details>
+<summary>Diamond Operato</summary>
+<div markdown="1">
+  Jdk 5에서 추가된 Generics는 Collection의 자료형을 명시해 주는 기능이였다. 
+  
+  Jdk 7부터는 왼쪽에 선언한 것을 바탕으로 컴파일러가 타입을 추측할 수 있도록 지원했다. 따라서 다음과 같이 작성이 가능해졌다.
+  
+  ```
+  //Before Jdk 7
+  ArrayList<Integer> arr = new ArrayList<Integer>();
+  
+  //In Jdk 7
+  ArrayList<Integer> arr = new ArrayList<>();
+  ```
+</div>
+</details>
+  
+<details>
+<summary>Using strings in switch statements</summary>
+<div markdown="1">
+Switch 문은 Primitive 자료형이나 Enumerated 자료형을 사용할 수 있었지만 Jdk 7 부터는 Switch 문에 String 자료형을 사용할 수 있게 되었다.
+  
+  ```
+  //Before Jdk 7
+  private void processTrade(Trage t){
+    String status = t.getStatus();
+    if(status.equalsIgnoreCase(NEW)){
+      newTrade(t);
+    }
+    else if(status.equalsIgnoreCase(EXECUTE)){
+      executeTrade(t);
+    }
+    else if(status.equalsIgnoreCase(PENDING)){
+       pendingTrade(t)' 
+    }
+  }
+  
+  //In Jdk 7
+  public void processTrade(Trade t){
+    String status = t.getStatus();
+    switch(status){
+      case NEW: newTrade(t);break;
+      case EXECUTE: executeTrade(t);break;
+      case PENDINg: pendingTrade(t);break;
+      defalut: break;
+    }
+  }
+  ```
+</div>
+</details>
+
+  
+<details>
+<summary>Automatic resource management</summary>
+<div markdown="1">
+  개발자는 사용한 리소스를 .close()를 사용하여 수동으로 회수해야 했다.
+  
+  Jdk 7 부터는 Try 문 안에 리소스를 선언하면 자동으로 리소스를 관리한다. 리소스가 여러 개면 세미콜론(;)으로 구분하여 선언 할 수 있다.
+  
+  ```
+  //Before Jdk 7
+  static String readFirstLineFromFile(String path) throws IOException{
+    BufferedReader br = new BufferedReader(new FileReader(path));
+    try{
+      return br.readLine();
+    }finally{
+      if(br != null) br.close();
+    }
+  }
+  
+  //In Jdk 7
+  static String readFirstLineFromFile(String path) throws IOException{
+    try(BufferReader br = new BufferedReader(new FileReader(path))){
+      retrun br.readLine();
+    }
+  }
+  ```
+  finally 에서 close하는 부분을 쓰지 않아도 된다.
+</div>
+</details>
+  
+  
+<details>
+<summary>Improved exception handling</summary>
+<div markdown="1">
+ Multi-catch 기능은 예외처리를 하기 위해 과도한 블록 생성을 하지 않는 방법이다.
+
+  ```
+   // Before Java 7
+  public void oldMultiCatch() {
+    try {
+      methodThatThrowsThreeExceptions();
+    } 
+    catch (ExceptionOne e) {
+    } 
+    catch (ExceptionTwo e) {
+    } 
+    catch (ExceptionThree e) {
+    }
+  }
+
+  // In Java 7
+  public void newMultiCatch() {
+    try {
+      methodThatThrowsThreeExceptions();
+    } 
+    catch (ExceptionOne | ExceptionTwo | ExceptionThree e) {
+    }
+  }
+  ```
+  
+  만약 다른 타입에 속하는 여러가지 예외가 있다면 Multi Multi-catch 블록을 이용 할 수 있다.
+  
+  ```
+  public void newMultiMultiCatch(){
+    try{
+      methodThatThrowsThreeExceptions();
+    }
+    catch (ExceptionOne e) {
+    }
+    catch (ExceptionTwo | ExceptionThree e) {
+    }
+  }
+  ```
+</div>
+</details>
+  
+<details>
+<summary>Underscore in Numeric literal</summary>
+<div markdown="1">
+  숫자형(정수,실수)에 _문자열을 사용 할 수 있다. 큰 숫자들을 다룰때 가독성이 향상될 수 있도록 도와준다.
+  
+  ```
+  int money = 1_000_000_000;
+  long cardnumber = 1234_5678_8901_1234L;
+  double pi = 3.1415_9265;
+  float pif = 3.14_15_92_65f;
+  ```
+  
+  - 소숫점 뒤에 _ 를 붙인 경우
+  - 숫자 끝에 _ 를 붙인 경우
+  - 숫자 시작에 _ 를 붙인 경우
+  
+  위 3가지 경우에 컴파일 에러가 발생할 수 있다.
+</div>
+</details>
+    
+<details>
+<summary>More Precise Rethrowing of Exception</summary>
+<div markdown="1">
+  try 내부에 다양한 Exception이 발생 할 수 있지만 catch 구문내에서 선언한 예외 유형만 던질 수 있었다.(throws)
+  하지만 Jdk 7 부터는 조금 더 정확한 Exception을 전달 할 수 있다.
+
+  ```
+  // Before Java 7
+public void obscure() throws Exception {
+    try {
+        new FileInputStream("abc.txt").read();
+        new SimpleDateFormat("ddMMyyyy").parse("12-03-2014");
+    } catch (Exception ex) {
+        System.out.println("Caught exception: " + ex.getMessage());
+        throw ex;
+    }
+}
+
+// In Java 7
+public void precise() throws ParseException, IOException {
+    try {
+        new FileInputStream("abc.txt").read();
+        new SimpleDateFormat("ddMMyyyy").parse("12-03-2014");
+    } catch (Exception ex) {
+        System.out.println("Caught exception: " + ex.getMessage());
+        throw ex;
+    }
+}
+  ```
+</div>
+</details>
+
+
+
+  
+
+
+  

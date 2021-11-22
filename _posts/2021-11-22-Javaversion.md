@@ -127,7 +127,27 @@ Java 버전들의 추가된 기능과 변해 가는 과정을 정리하려고 �
   2006년 12월 11일 발표, 일반 지원은 2013년 2월에 종료되었으며, 연장 지원은 2018년 12월에 종료되었다. 
   
   이때부터 표기가 J2SE에서 Java SE로 바뀌었다.
+
+<details>
+<summary>JDBC 4.0</summary>
+<div markdown="1">
+  자바에서 데이터베이스 JDBC 4.0이 업데이트 되었다.
+</div>
+</details>
   
+<details>
+<summary>Scripting Language Support</summary>
+<div markdown="1">
+  자바에서 다른 스크립트 엔진을 가져와서 실행 가능하게 만들어준다.
+</div>
+</details>
+  
+<details>
+<summary>pluggable annotation</summary>
+<div markdown="1">
+  annotation을 이용해서 클래스 수준 주석, 메서드 수준 주석을 나타낼 수 있다.
+</div>
+</details>
   
   
   
@@ -410,6 +430,11 @@ java.nio.file 패키지가 추가되었다.
   디폴트 메소드가 구현된 인터페이스도 상속받을 수 있다. 클래스가 디폴트 메소드가 정의된 인터페이스를 implements 하면 자동으로 구현이 된다.
   
   >추상 클래스 vs 인터페이스
+  - 추상클래스, 인터페이스 둘다 객체로 만들 수 없다. extends하거나 implements 해야한다.
+  - 추상클래스는 public, protected, private 메소드를 가질 수 있지만 인터페이스는 public만 허용된다.
+  - 추상클래스에는 멤버변수 선언이 가능하지만 인터페이스는 public static 변수만 선언이 가능하다.
+  - 인터페이스는 implements 키워드로 여러 인터페이스를 구현할 수 있지만 추상클래스는 extends 키워드로 1개의 클래스만 상속받을 수 있다.
+  
 </div>
 </details>
 
@@ -560,9 +585,57 @@ java.nio.file 패키지가 추가되었다.
 <details>
 <summary>Stream</summary>
 <div markdown="1">
+  자바의 자료구조들을 선언적으로 다루는 역할을 한다. 컬렉션, 배열등에 대해 저장되어있는 요소들을 하나씩 참조하며 반복적인 처리를 가능하게 해주는 기능이다.
+  
+  불필요한 for문과 그안에서 이루어지는 if문등 분기처리를 쓰지않고 깔끔하고 직관적인 코드로 변형 할 수 있다.
+  
+  ```
+  int[] numberArr = {1,2,3,4,5,6};
+  List<Integer> numberList = Arrays.asList(1,2,3,4,5,6);
+  Set<Integer> numberSet = new HashSet<>(numberList);
+  
+  Arrays.stream(numberArr);
+  Stream.of(1,2,3,4,5,6);
+  numberList.stream();
+  numberSet.stream();
+  ```
+  컬렉션은 자료구조들의 구현체고 스트림은 자료구조들을 다루는 역할이라고 생각하면 된다.
+  
+  ```
+  //Collection
+  List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+  List<Integer> evenList = new ArrayList<>();
+  
+  for(int number: numbers){
+    if(number %2==0){
+      evenList.add(number);
+    }
+  }
+  ```
+  
+  ```
+  //Stream
+  List<Integer> evenList = Stream.iterate(1,n -> n+1)
+      .limit(6)
+      .filter(number -> number % 2==0)
+      .collect(toList());
+  ```
+  Stream을 사용한 코드는 계속해서 도트 연산자로 메서드 체이닝을 일으킨다. 메서드가 반환하는 어떤 객체가 도트 뒤에 나오는 메서드를 갖고있다고 생각해야 한다.
+  
+  스트림은 중간 연산과 최종연산으로 만들어져있으며 최종연산이 수행되어야 중간 연산들도 모두 수행되어진다.
+  
+  ### 중간연산 종류
+  -Stream<R> map(Function<A, R>)
+  -Stream<T> filter(Predicate<T>)
+  -Stream<T> peek(Consumer<T>)
 
-  ```
-  ```
+  ### 최종연산 종류
+  -R collect(Collector)
+  -void forEach(Consumer<T>)
+  -Optional<T> reduce(BinaryOperator<T>)
+  -boolean allMatch(Predicate<T>)
+  -boolean anyMath(Predicate<T>)  
+  
 </div>
 </details>
 
@@ -570,8 +643,43 @@ java.nio.file 패키지가 추가되었다.
 <details>
 <summary>Optional</summary>
 <div markdown="1">
-
+  반복적인 null 체크를 없애기 위해서 Optional<T> 라는 클래스가 추가되었다.
+  
+  실제 레퍼런스를 한번 감싸는 래퍼 객체를 만들어 null 체크를 내부로 숨겼기에 외부코드에선 null체크가 보이지않게 감춘 것이다.
+  
   ```
+  public static void main(String args[]){
+      String str ="hello";
+      Optional <String> o1 = Optional.of(str); // str이 null이면 NPE발생
+      Optional <String> o2 = Optional.ofNullable(str); // str이 null이면 빈 Optional 객체반환
+      Optional <String> o3 = Optional.empty(); // 빈 Optional 객체 반환
+  {
+  
+  ### Optional API
+  
+  - boolean isPresent()
+    내부객체가 null이 아닌지 확인한다. null이면 false반환한다.
+  
+  - void ifPresent(Consumer<T>)
+    Consumer<T>는 함수형 인터페이스에서 나온 것처럼 void 추상메서드를 갖고 있다. null이 아닐때만 실행된다.
+  
+  - Optional<T> filter(Preficate<T>)
+    스트림은 여러 데이터를 들고 있는 객체이다보니 filter로 걸러지는 데이터들이 반환되었지만 Optional은 내부객체가 단일객체인만큼 해당 조건을 만족하는지만 확인하는 정도로 사용할 수 있다.
+  
+  - Optional<U> map(Function<T,U>)
+    스트림과 같다. 내부 객체를 변환하는 용도로 사용한다.
+  
+  - T get()
+    내부 객체를 반환한다. 다만 내부 객체가 null이면 NPE가 발생한다. null이 아니라는 확실한 경우에만 사용을 해야한다.
+  
+  - T orElse(T)
+    내부 객체를 반환한다. 내부 객체가 null이면 인자로 들어간 기본값을 반환한다.
+  
+  -T orElseGet(Supplier<T>)
+    orElse()와 동일한데 orElse()가 기본값 레퍼런스를 인자로 받는다면 orElseGet()은 내부 객체가 null일때 기본값을 반환할 객체를 인자로 받는다.
+  
+  -T orElseThrow(Supplier<U>)
+    내부 객체가 null이면 인자로 전달받은 예외를 발생시킨다.
   ```
 </div>
 </details>
@@ -579,8 +687,35 @@ java.nio.file 패키지가 추가되었다.
 <details>
 <summary>날짜 관련 클래스 추가</summary>
 <div markdown="1">
-
+  전 버전에는 Date 와 Calender 클래스가 제공되었고 불편하다는 의견이 많았다. jdk 8부터 LocalDateTime 과 ZonedDateTime을 제공해준다.
+  
+  
   ```
+  //우리가 사용하는 달력 그대로 나타낼 수 있음
+  LocalDate curDate = LocalDate.now(); // 2021-11-22
+  LocalDate TargetDate = LocalDate.of(2021,11,22);//2021-11-22
+  ```
+  
+  ```
+  //시간 클래스이고 매우 직관적임
+  LocalTime curTime = LocalTime.now();//23:58분
+  LocalTime targetTime = LocalTime.of(23,57,30);//23:57:30 nano시간까지 적용가능
+  ```
+  
+  ```
+  LocalDateTime curDateTime = LocalDateTime.now();
+  LocalDate curDate = LocalDate.now();
+  LocalTime curTime = LocalTime.now();
+  LocalDateTime targetDateTime = LocalDateTime.of(curDate,curTime);
+  
+  //서로 동일함
+  System.out.println(curDateTime);
+  System.out.println(targetDateTime);
+  ```
+  
+  ```
+  //LocalDateTime -> String 변환
+  System.out.println(curDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
   ```
 </div>
 </details>
@@ -589,17 +724,65 @@ java.nio.file 패키지가 추가되었다.
 <details>
 <summary>병렬 배열 정렬</summary>
 <div markdown="1">
-
-  ```
-  ```
+  Arrays.parallelSort()는 MultiThread로 동작하기 때문에 일반적인 Arrays.sort()보다 빠르다.
+  
+  배열을 둘로 계속 쪼개며 합치면서 정렬하는 알고리즘을 가진다.
+  
 </div>
 </details>
   
 <details>
 <summary>String Joiner</summary>
 <div markdown="1">
-
+StringJoiner는 여러 문자들을 연결할 때 붙일 구분자를 지정해줄 수 있는게 특징이다.
+  
+  
   ```
+  String first = "짬뽕";
+  String second = "짜장면";
+  String third = "탕수육";
+  String fourth = "깐풍기";
+  
+  //1-2-3-4를 나타내고싶다면
+  //String, Operator 사용
+  String menu = first + "-" + second + "-" + third + "-" + fourth;
+  
+  
+  //Stringbuffer 사용
+  StringBuffer sb = new StringBuffer();
+  sb.append(first);
+  sb.append("-");
+  sb.append(second);
+  sb.append("-");
+  sb.append(third);
+  sb.append("-");
+  sb.append(fourth);
+  String menu = sb.toString();
+  //StringJoiner
+  StringJoiner sj = new StringJoiner("-");
+  sj.add(first);
+  sj.add(second);
+  sj.add(third);
+  sj.add(fourth);
+  String menu = sj.toString();
+  ```
+  
+  StringJoiner는 prefix와 suffix도 붙여줄 수있습니다 
+  ```
+  //[짬뽕-짜장면-탕수육-깐풍기]
+  StringJoiner sj = new StringJoiner("-","[","]");
+  sj.add(first);
+  sj.add(second);
+  sj.add(third);
+  sj.add(fourth);
+  String menu = sj.toString();
+  ```
+  
+  Stream을 이용해서 쉽게 사용도 가능하다.
+  
+  ```
+  List<String> food = Arrays.asList(first,second,third,fourth);
+  String menu = food.stream().collect(Collectors.joining("-","[","]"));
   ```
 </div>
 </details>

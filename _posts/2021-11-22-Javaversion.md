@@ -519,6 +519,24 @@ intefrace 안에 구현된 메소드를 추가해야 할 때 default 키워드�
   BiConsumer<String, Integer> bc = (str, num) -> System.out.println(str+ "::" + num);
   bc.accept("숫자", 5);
   ```
+  
+  - BiFunction<T,U,R>
+    서로다른 타입의 2개의 인자를 받아 또 다른 타입으로 반환한다.
+  
+  ```
+  BiFunction<Integer,String,String> bf = (num,str) -> String.ValueOf(num) + str;
+  String result = bf.apply(5,"678");
+  ```
+  
+  -Comparator<T>
+    자바의 전통적인 인터페이스 중 하나이다. 객체간 우선순위를 비교할 때 사용하는 인터페이스인데 전통적으로 1회성 구현을 많이하는 인터페이스이다.
+    람다의 등장으로 Comparator의 구현이 매우 간결해져 Comparable 인터페이스의 실효성이 많이 떨어진듯 하다.
+  
+  ```
+  Comparator<String> c = (str1,str2) -> str1.compareTo(str2);
+  int result = c.compare("aaa","bbb");
+  ```
+  
 </div>
 </details>
 

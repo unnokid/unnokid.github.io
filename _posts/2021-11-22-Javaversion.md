@@ -710,16 +710,18 @@ java.nio.file 패키지가 추가되었다.
   스트림은 중간 연산과 최종연산으로 만들어져있으며 최종연산이 수행되어야 중간 연산들도 모두 수행되어진다.
   
   ### 중간연산 종류
-  -Stream<R> map(Function<A, R>)
-  -Stream<T> filter(Predicate<T>)
-  -Stream<T> peek(Consumer<T>)
+  
+  - Stream<R> map(Function<A, R>)
+  - Stream<T> filter(Predicate<T>)
+  - Stream<T> peek(Consumer<T>)
 
   ### 최종연산 종류
-  -R collect(Collector)
-  -void forEach(Consumer<T>)
-  -Optional<T> reduce(BinaryOperator<T>)
-  -boolean allMatch(Predicate<T>)
-  -boolean anyMath(Predicate<T>)  
+  
+  - R collect(Collector)
+  - void forEach(Consumer<T>)
+  - Optional<T> reduce(BinaryOperator<T>)
+  - boolean allMatch(Predicate<T>)
+  - boolean anyMath(Predicate<T>)  
   
 </div>
 </details>

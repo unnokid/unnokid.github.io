@@ -807,6 +807,72 @@ StringJoiner는 여러 문자들을 연결할 때 붙일 구분자를 지정해�
 # JdK 10
   2018년 3월 20일 발표. 일반 지원은 2018년 9월에 종료되었다.
   
+<details>
+<summary>Local-variable type inference</summary>
+<div markdown="1">
+  로컬변수를 선언할때 타입추론을 이용하여 명시적으로 타입선언 없이도 변수를 선언할 수 있게 되었다.
+  
+  컴파일 할때 컴파일러가 value type을 가지고 변수 타입을 추론한다.
+  
+  다이아몬드 연산자에 아무 타입도 선언해주지 않거나 반복문 안에서 사용되는 var변수의 초깃값을 주지 않으면 Object로 인식한다.
+  
+  ```
+  var list = new ArrayList<Strsing>(); //ArrayList<String>
+  var stream = list.stream(); //Stream<String>
+  ```
+  
+  ```
+  //주의할 점은 리터럴로 선언할때와 for문 for each구문에서만 사용이 가능하다. 
+  for(var value : list){
+    System.out.prntln(value);
+  }
+  
+  for(var i=0;i<list.size();i++){
+      System.out.prntln(i);
+  }
+
+  ```
+  
+  ```
+  //또한 변수에 함수를 담을 수 있다.
+  public static void main(String[] args){
+    var val = countingStar();
+  }
+  
+  public static List countNumbers(){
+    var numbers = List.of(1,2,3,4,5);
+    
+    for(var number : numbers){
+      System.out.printf(number);
+    }
+    return numbers;
+  }
+  ```
   
   
+</div>
+</details>
   
+<details>
+<summary>Parallel Full GC for G1</summary>
+<div markdown="1">
+이전 JDK의 G1 GC는 Full GC를 피할 수 있게 설계 되긴했지만 병행 컬렉터 작업에서 충분할 만큼 빠르게 메모리 반환을 하지 못하면 Full GC가 발생한다. 
+  
+  G1는Mark-Sweep-Compact 알고리즘을 사용했는데 이전까지는 단일 쓰레드로 GC를 수행했다면 이번 버전부터는 병렬로 Mark-Sweep-Compact를 수행한다.
+  
+  쓰레드 수는 기본적으로 Young and Mixed Collection의 쓰레드와 동일하고 필요한 경우 옵션으로도 조절이 가능하다.
+  >Mark-Sweep-Compact 알고리즘 - 살아있는 객체를 식별하고 살아있는것만을 남기고 삭제하며 살아있는 객체를 모아준다.
+</div>
+</details>
+  
+<details>
+<summary>Application Class-Data Sharing</summary>
+<div markdown="1">
+  기존의 Class-Data Sharing(CDS)기능을 확장해 애플리케이션 크래스를 공유 아카이브에 배치하고 서로 다른 자바 프로세스들이 공유를 할수 있도록 개선함으로 startup 시간을 단축시키고 메모리 사용량을 최적화 시켰다.
+  
+  >CDS 기능이란
+ 
+  ```
+  ```
+</div>
+</details>

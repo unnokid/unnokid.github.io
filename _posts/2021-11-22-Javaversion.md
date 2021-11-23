@@ -31,6 +31,43 @@ Java 버전들의 추가된 기능과 변해 가는 과정을 정리하려고 �
   numbers.add(2);
   numbers.add(3);
   ```
+  
+  ### 제네릭 타입(class, interface)
+  제네릭 타입은 타입을 파라미터로 가지는 클래스와 인터페이스를 말한다.
+  
+|타입|설명|
+|---|-------|
+| `<T>` | Type |
+| `<E>` | Element |
+| `<K>` | Key |
+| `<V>` | Value|
+| `<N>` | Number |  
+
+  
+  ```
+  public class Box<T>{
+    private T t;
+    
+    public T get()  {return t;}
+  
+    public void set(T t)  {this.t =t;}
+  
+  }
+  ```
+  
+  
+  ```
+  Interface GenericInterface<T>{
+      T print();
+  }
+  
+  class GenericClass implements GernericInterface<String>{
+      @Override
+      public String print(){
+          return "짬뽕";
+      }
+  }
+  ```
 </div>
 </details>
   

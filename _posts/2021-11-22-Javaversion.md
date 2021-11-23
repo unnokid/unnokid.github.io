@@ -915,7 +915,7 @@ javascript(node),파이썬 같은 인터프리터 언어의 shell 환경처럼 �
 이전 JDK의 G1 GC는 Full GC를 피할 수 있게 설계 되긴했지만 병행 컬렉터 작업에서 충분할 만큼 빠르게 메모리 반환을 하지 못하면 Full GC가 발생한다. 
   
   G1는Mark-Sweep-Compact 알고리즘을 사용했는데 이전까지는 단일 쓰레드로 GC를 수행했다면 이번 버전부터는 병렬로 Mark-Sweep-Compact를 수행한다.
-  > https://unnokid.github.io/GC/ GC 기본 정리
+  > [GC 기본 정리](https://unnokid.github.io/GC/)
   
    >Mark-Sweep-Compact 알고리즘 - 살아있는 객체를 식별하고 살아있는것만을 남기고 삭제하며 살아있는 객체를 모아준다.
   

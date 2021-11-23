@@ -800,9 +800,65 @@ StringJoiner는 여러 문자들을 연결할 때 붙일 구분자를 지정해�
 # JdK 9
   2017년 9월 21일 발표. 일반 지원은 2018년 3월에 종료되었다.
   
-  버전을 1.x로 하지않고 9.0으로 변경 되었고 64비트 버전만 출시 되었다.
+  Project jigsaw 기반으로 런타임을 모듈화된 것이 가장 큰특징이다. 이에 대부분의 콘솔 프로그램 개발에는 더 이상 AWT나 Swing같은 불필요한 라이브러리를 끌어쓸 필요도 없이 최상위 모듈인 Base만 사용해도 된다. 특정 프로그램에 최적화된 최소 런타임을 제작할 수도 있게 되어 패키징 역시 간편해졌다.
+  
+  기본 Garbage Collector로 G1(Garbage First)을 사용한다.
+  
+<details>
+<summary>Java Platform Module System(jigsaw) 추가</summary>
+<div markdown="1">
+유연한 런타임 이미지를 만들기위해 Java 플랫폼을 모듈화 하여 필요한 모듈만으로 경량화된 이미지를 만들 수 있게 되었다.
+  
+  기존에는 JRE 일부분만 배포가 불가능했지만 Jigsaw를 통하여 원하는 모듈만 모아 런타임 환경 이미지를 만들 수 있게 되었다.
+</div>
+</details>
+  
+<details>
+<summary>JShell 추가</summary>
+<div markdown="1">
+javascript(node),파이썬 같은 인터프리터 언어의 shell 환경처럼 바로 코드를 작성하고 결과를 확인 할 수 있는 REPL(Read-Eval-Print-Loop) 도구를 제공한다. 번거롭게 java 파일을 만들고 컴파일해서 결과를 볼 필요 없이 코드를 작성하고 바로 실행하여 결과를 확인할 수 있다.
+</div>
+</details>
   
   
+  
+<details>
+<summary>Convenience Factory Methods for Collections</summary>
+<div markdown="1">
+  List, Set, Map 인터페이스에 불변 Collection을 만들 수 있는 편리한 매서드가 생겼다.
+  
+  ```
+  // Before Jdk 9
+  List<String> menu = new ArrayList<>();
+  menu.add("짬뽕");
+  menu.add("짜장면");
+  menu.add("탕수육");
+  menu = Collections.unmodifiableList(menu);
+  
+  // In Jdk 9
+  List<String> menu = List.of("짬뽕","짜장면","탕수육");// [짬뽕,짜장면,탕수육]
+  
+  List<String> menu = List.of(); // [] //비어있는 불변 리스트 만들기
+  Set<String> fruits = Set.of("Apple","Banana","Cherry");//중복인자를 넘기면 예외가 발생함
+  Map<Integer,String> menu = Map.of(1,"짜장면",5,"짬뽕",3,"탕수육");
+  Map<Integer,String> menu = Map.ofEntries(Map.entry(1,"짜장면"),Map.entry(5,"짬뽕"),Map.entry(3,"탕수육"));
+  ```
+
+</div>
+</details>
+
+<details>
+<summary>private 구현체 추가</summary>
+<div markdown="1">
+  java 8에서 defualt method, static method를 제공했지만 
+  
+  - 특정기능을 처리하는 내부 method인데도 외부에 공개되는 public method로 만들어야 했다.
+  - interface를 구현하는 다른 interface 또는 calss가 해당 method에 액세스하거나 상속 할 수 있는 것을 원하지 않는다.
+  
+  이때 private를 사용한다.
+
+</div>
+</details>
   
 # JdK 10
   2018년 3월 20일 발표. 일반 지원은 2018년 9월에 종료되었다.
@@ -859,9 +915,12 @@ StringJoiner는 여러 문자들을 연결할 때 붙일 구분자를 지정해�
 이전 JDK의 G1 GC는 Full GC를 피할 수 있게 설계 되긴했지만 병행 컬렉터 작업에서 충분할 만큼 빠르게 메모리 반환을 하지 못하면 Full GC가 발생한다. 
   
   G1는Mark-Sweep-Compact 알고리즘을 사용했는데 이전까지는 단일 쓰레드로 GC를 수행했다면 이번 버전부터는 병렬로 Mark-Sweep-Compact를 수행한다.
+  > https://unnokid.github.io/GC/ GC 기본 정리
+  
+   >Mark-Sweep-Compact 알고리즘 - 살아있는 객체를 식별하고 살아있는것만을 남기고 삭제하며 살아있는 객체를 모아준다.
   
   쓰레드 수는 기본적으로 Young and Mixed Collection의 쓰레드와 동일하고 필요한 경우 옵션으로도 조절이 가능하다.
-  >Mark-Sweep-Compact 알고리즘 - 살아있는 객체를 식별하고 살아있는것만을 남기고 삭제하며 살아있는 객체를 모아준다.
+ 
 </div>
 </details>
   
@@ -870,9 +929,9 @@ StringJoiner는 여러 문자들을 연결할 때 붙일 구분자를 지정해�
 <div markdown="1">
   기존의 Class-Data Sharing(CDS)기능을 확장해 애플리케이션 크래스를 공유 아카이브에 배치하고 서로 다른 자바 프로세스들이 공유를 할수 있도록 개선함으로 startup 시간을 단축시키고 메모리 사용량을 최적화 시켰다.
   
-  >CDS 기능이란
- 
-  ```
-  ```
+  여러 대의 JVM이 하나의 물리 장비 또는 가상 장비에서 돌아가는 경우, 자원에 미치는 영향을 줄이기 위해 개발된 기능이다.
 </div>
 </details>
+
+
+  

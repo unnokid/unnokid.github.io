@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Java 버젼별 정리(5~17)"
+title: "Java 버별 정리(5~17)"
 ---
 
 Java 버전들의 추가된 기능과 변해 가는 과정을 정리하려고 한다.

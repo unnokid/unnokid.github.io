@@ -87,9 +87,9 @@ List Collection 정렬의 경우 사용되고 ArrayList, LinkedList, Vector 등 
 
 ### Interface Comparator
 
-정렬 가능한 클래스(Comparable 인터페이스를 구현한 클래스)들의 기본 정렬 기준과 다르게 정렬 하고 싶을 때 사용하는 인터페이스
+정렬 가능한 클래스(Comparable 인터페이스를 구현한 클래스)들의 기본 정렬 기준과 다르게 정렬 하고 싶을 때 사용하는 인터페이스이다.
 
-주로 익명 클래스로 사용되고 기본적인 정렬 방법인 오름차순 정렬을 내림차순으로 정렬할 때 많이 사용한다.
+주로 **익명 클래스**로 사용되고 기본적인 정렬 방법인 오름차순 정렬을 내림차순으로 정렬할 때 많이 사용한다.
 
 Comparator interface를 implements 후 compare() 메소드를 오버라이드한 myComparator class를 작성한다.
 

@@ -790,7 +790,7 @@ java.nio.file 패키지가 추가되었다.
 <div markdown="1">
   전 버전에는 Date 와 Calender 클래스가 제공되었고 불편하다는 의견이 많았다. jdk 8부터 LocalDateTime 과 ZonedDateTime을 제공해준다.
   
-  - 불편 객체가 아님
+  - 불변 객체가 아님
   - int 상수 필드의 남용
   - 헷갈리는 월 지정
   - 일관성 없는 요일 상수

@@ -85,7 +85,7 @@ List Collection 정렬의 경우 사용하고 ArrayList, LinkedList, Vector 등 
 
 
 
-### Interface Comparable
+### Interface Comparator
 
 정렬 가능한 클래스(Comparable 인터페이스를 구현한 클래스)들의 기본 정렬 기준과 다르게 정렬 하고 싶을 때 사용하는 인터페이스
 

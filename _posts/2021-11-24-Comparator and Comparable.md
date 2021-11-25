@@ -6,7 +6,7 @@ title: "Comparator 와 Comparable 정리"
 
 # Comparable 과 Comparator
 
-Steram 정리를 하다가 Comparator를 보게 됬는데 생각해보니 정렬에 할때 자주 사용되지만 자세히는 잘 모르고 있다.
+Steram 정리를 하다가 Comparator를 보게 됐는데 생각해 보니 정렬을 할 때 자주 사용되지만 자세히는 잘 모르고 있다.
 
 사용자가 정의한 정렬 기준에 맞춰 정렬해야 하는 경우가 있다.
 - ex) 좌표를 x좌표가 증가하는 순, x좌표가 같다면 y좌표가 감소하는 순으로 정렬

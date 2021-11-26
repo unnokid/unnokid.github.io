@@ -99,7 +99,7 @@ TimSort는 부분적으로 정렬되어 있을 때 더욱 효과적이다.
 
  - byte[], char[], double[], int[] 등에 대한 배열 Primitive Array에서는 Dual Pivot QuickSort(Quick Sort + Insertion Sort)를 사용 한다.
 > Primitive Array : 기본 자료형에 대한 배열
-> 
+
 ```java
 //int[] 예시
 public static void sort(int[] a){

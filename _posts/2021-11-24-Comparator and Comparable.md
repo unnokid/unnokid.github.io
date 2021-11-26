@@ -92,7 +92,7 @@ public static void sort(Object[] a){
   }
 }
 ```
-TimSort는 부분적으로 정렬되어 있을 때 더욱 효과적이다.
+TimSort는 부분적으로 정렬되어 있을 때 더욱 효과적이다. 거의 정렬이 다 되어있다면 O(N)의 성능을 보여주고 정렬 되어있지 않아도 O(NlogN)의 성능을 보장한다.
 
 <br/>
 <br/>
@@ -107,6 +107,15 @@ public static void sort(int[] a){
 }
 ``` 
 
+기존 퀵 정렬이 최악일 때 시간 복잡도로 O(N^2)을 갖는데 DualPivotQuicksort.sort()는 최악의 데이터 세트에 대해서도 O(nlogn)을 갖는다. 
+
+ - 배열이 크기가 286 이상인 경우 MergeSort 수행
+ - 배열이 크기가 286 보다 작은 경우 QuickSort를 MergeSort보다 우선 수행한다.
+ - 배열이 크기가 47 보다 작은 경우 InsertionSort를 QuickSort보다 우선 수행한다.
+ - byte 배열의 크기가 29보다 큰 경우 CountingSort를 InsertionSort보다 우선 수행한다.
+ - short, char 배열의 크기가 3200보다 큰 경우 CountingSort를 QuickSort보다 우선 수행한다.
+ 
+ > CountingSort의 시간 복잡도는 O(N)으로 가장 빠르지만 추가적인 배열을 만들어야 하기 때문에 좀 더 효율적인 상황에 따라 바꿔쓴다.
 <br/>
 <br/>
 

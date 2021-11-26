@@ -1,7 +1,7 @@
 
 ---
 layout: single
-title: "Process 와 Thread"
+title: "Process 와 Thread 차이점 정리"
 ---
 
 # Process 와 Thread 차이점 정리

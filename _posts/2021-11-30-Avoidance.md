@@ -101,16 +101,20 @@ Cycle 생성 여부 조사할 때 프로세스가 n개일 때 O(N^2) 시간이 �
 
 <img src= "https://user-images.githubusercontent.com/58356031/144000102-62869165-b010-49f5-9b41-1440551ab2c7.jpg" width="600">
 
-Allocated은 할당되는 자원값, Maximum은 프로세스가 필요한 자원의 양, Available은 자원할당이 가능한 남은 자원양, Need은 프로세스가 아직 더 필요한 자원의 양이다.
+Allocated은 할당되는 자원의 양, Maximum은 프로세스가 필요한 자원의 양, Available은 자원 할당이 가능한 남은 자원의 양, Need은 프로세스가 아직 더 필요한 자원의 양이다.
 
-Need 값 = Maximum값 - Allocated 값 으로 나타낸다.
+Need 값 = Maximum 값 - Allocated 값으로 나타낸다.
 
+P1~P4 순회를 하며 Need 값 <= Available 값 이 만족하는지 찾는다.
 
+P2에서 만족을 하기 때문에 자원을 할당해 주고 작업이 끝났다고 가정하고 자원을 돌려받는다. Available = Availalbe + Allocation 하고 다시 P1~P4까지 찾는다.
 
+그다음 순회에서 P4에서 만족하므로 위와 같이 Available = Availalbe + Allocation 하고 다시 P1~P4까지 찾는 과정을 반복해 모든 프로세스가 완료될 때까지 반복한다.
+
+결과적으로 `P2 -> P4 -> P3 -> P1` 순서일때 안전상태가 있다.
 
 <br/>
 <br/>
-
 
 ### 은행원 알고리즘의 단점
 - 사용자 수가 일정해야 함
@@ -122,8 +126,6 @@ Need 값 = Maximum값 - Allocated 값 으로 나타낸다.
 <br/>
 <br/>
 
-
-
-
 ### 정리 
-자원이 instance 가 한 개일 때는 자원 할당 그래프 알고리즘을 사용하고 자원이 instance가 여러 개 일 때 은행원 알고리즘을 사용한다.
+- 각각의 프로세스가 지금 갖고 있는 자원에서 최대 자원 요구량의 상황까지 고려하면서 교착 상태가 일어나지 않도록 회피하는 것이 목표
+- 자원이 instance가 한 개일 때는 자원 할당 그래프 알고리즘을 사용하고 자원이 instance가 여러 개 일 때 은행원 알고리즘을 사용

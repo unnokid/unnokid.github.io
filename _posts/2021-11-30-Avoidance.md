@@ -119,9 +119,9 @@ Need 값 = Maximum 값 - Allocated 값으로 나타낸다.
 
 P1~P4 순회를 하며 Need 값 <= Available 값 이 만족하는지 찾는다.
 
-P2에서 만족을 하기 때문에 자원을 할당해 주고 작업이 끝났다고 가정하고 자원을 돌려받는다. Available = Availalbe + Allocation 하고 다시 P1~P4까지 찾는다.
+P2에서 만족을 하기 때문에 자원을 할당해 주고 작업이 끝났다고 가정하고 자원을 돌려받는다. Available = Available + Allocated 하고 다시 P1~P4까지 찾는다.
 
-그다음 순회에서 P4에서 만족하므로 위와 같이 Available = Availalbe + Allocation 하고 다시 P1~P4까지 찾는 과정을 반복해 모든 프로세스가 완료될 때까지 반복한다.
+그다음 순회에서 P4에서 만족하므로 위와 같이 Available = Available + Allocated 하고 다시 P1~P4까지 찾는 과정을 반복해 모든 프로세스가 완료될 때까지 반복한다.
 
 결과적으로 `P2 -> P4 -> P3 -> P1` 순서일때 안전상태가 있다.
 

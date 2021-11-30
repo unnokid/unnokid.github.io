@@ -108,7 +108,12 @@ Cycle 생성 여부 조사할 때 프로세스가 n개일 때 O(N^2) 시간이 �
 
 <img src= "https://user-images.githubusercontent.com/58356031/144000102-62869165-b010-49f5-9b41-1440551ab2c7.jpg" width="600">
 
-Allocated은 할당되는 자원의 양, Maximum은 프로세스가 필요한 자원의 양, Available은 자원 할당이 가능한 남은 자원의 양, Need은 프로세스가 아직 더 필요한 자원의 양이다.
+**용어 설명**
+
+ - Allocated은 할당되는 자원의 양
+ - Maximum은 프로세스가 필요한 자원의 양
+ - Available은 자원 할당이 가능한 남은 자원의 양
+ - Need은 프로세스가 아직 더 필요한 자원의 양
 
 Need 값 = Maximum 값 - Allocated 값으로 나타낸다.
 

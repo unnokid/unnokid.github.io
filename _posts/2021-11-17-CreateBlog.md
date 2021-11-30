@@ -6,17 +6,26 @@ title: "github 블로그 만들기"
 내가 만든 페이지를 모든 사람이 보게 하려면 웹서버를 설치하고 외부로 전송할 수 있게 만들어야 한다.
 하지만 쉽지 않기 때문에 그 역할을 대신해 주는게 웹 호스팅이다.
 
+<br/>
+<br/>
+
 <img src= "https://user-images.githubusercontent.com/58356031/142229623-ca5d93dd-474a-431c-9552-c1f98ef16565.png" width="600">
 
 ###### 출처:생활코딩
 
 내가 만든 index.html를 github의 호스팅을 이용한다. 파일 업로드를 하면 깃허브의 서버 컴퓨터가 활성화되며 모든 사람이 볼 수 있는 주소를 알려준다.
 
+<br/>
+<br/>
+
 <img src= "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fejitoq%2FbtqCgnl0z4K%2FwCoVdf98LWXxaXOMZM1NX1%2Fimg.png" width="600">
 
 ###### 출처:생활코딩
 
 내 사이트의 주소를 다른 사람들에게 알려주면 그 사람들은 그 주소로 깃허브 서버에 있는 웹서버에 접속해 index.html을 볼 수 있는 방법이다.
+
+<br/>
+<br/>
 
 # 깃 허브 블로그 만들기
 개인이 웹서버를 운영하기엔 너무나 많은 제약이 있다. 따라서 웹 호스팅을 대신해 주는 여러 방법이 있는데 그중 하나가 Github pages를 이용하는 것이다.
@@ -28,8 +37,14 @@ Github pages는 단순히 사이트 생성을 담당하는 호스팅 플랫폼�
 static site generator 종류는 Jekyll, hexo, hugo 등이 있는데 본인은 자체 내부적으로도 작동되고 있다는 Jekyll 를 이용하기로 했고 Jekyll 테마 중 minimal-mistakes를 fork 받아서 블로그를 만들었다.
 > static website 란? 미리 저장된 파일들이 그저 서버를 통해 제공되기만 하는 형태의 사이트를 말한다.
 
+<br/>
+<br/>
+
 # Minimal-Mistakes 디렉터리 구조
 Jekyll 구조를 기반으로 각 테마마다 조금씩 차이가 있다. 내가 사용하고 있는 Minimal-Mistakes의 디렉터리 구조를 알아봤다.
+
+<br/>
+<br/>
 
 ### 주요 파일 모음
 - [_data 폴더](https://unnokid.github.io/first/#_data-%ED%8F%B4%EB%8D%94)
@@ -47,6 +62,9 @@ Jekyll 구조를 기반으로 각 테마마다 조금씩 차이가 있다. 내�
 
 예로 `member.yml` 파일이 있다면 site.data.member로 입력하여 그 파일을 사용할 수 있다.
 폴더 기본 하위로는 상단 메뉴바를 커스터마이징 할 수 있는 `navigation.yml` 와 각국 언어별로 어떤 텍스트로 표시되는지를 나열한 문서 `ui-text.yml`이 있다.
+
+<br/>
+<br/>
 
 ### _includes 폴더
 많이 재사용 되는 html 파일들을 모아 둔 폴더이다. 예로 댓글, 카테고리, 태그, 비디오, head, 등등 블로그에 자주 쓰이거나 항상 보이는 공통된 컴포넌트들을 담은 코드들만 모아둔 폴더이다.
@@ -81,6 +99,9 @@ Jekyll 구조를 기반으로 각 테마마다 조금씩 차이가 있다. 내�
 비디오(유튜브) 등을 embeding 해준다.
 예시로 %include video id = "xxxx xxxx" provider="youtube"% 이런 식으로 삽입 가능하다. ({}추가하면 됨)
 
+<br/>
+<br/>
+
 ### _layout 폴더
 페이지마다 디자인과 직접적으로 연결된 전체적인 레이아웃으로 템플릿을 위한 코드들 한곳에 보관할 수 있게 해준다.
 따라서 모든 페이지에 반복적으로 입력하지 않고 _inclde 폴더 안에 부분적인 html들이 존재해서 이를 불러오는 부분이 많다.
@@ -88,15 +109,27 @@ Jekyll 구조를 기반으로 각 테마마다 조금씩 차이가 있다. 내�
 기본 레이아웃은 default.html 이 사용된다. 대부분 레이아웃 html들이 `layout: default` 값을 담고 있다.
 따라서 포스트에 layout: archive만 해줘도 상속구조이기때문에 위에 레이아웃을 부르고 불러서 렌더링이 된다.
 
+<br/>
+<br/>
+
 ### _sass 폴더
 minimal-mistakes.scss에 import 할 수 있는 scss 파일들을 모아 둔 폴더이다.
 minimal-mistakes.scss는 최종적으로 _assets/css/main.scss에 import 된다. 하는 역할은 블로그와 컴포넌트들을 시각적으로 디자인하는 스타일 시트 파일들이다.
 
+<br/>
+<br/>
+
 ### _assets 폴더
 main.scss가 들어가는 폴더와 이미지 파일, java script 파일들이 들어가 있다.
 
+<br/>
+<br/>
+
 ### _config.yml
 블로그를 구성하기 위한 기본적인 설정값이다.
+
+<br/>
+<br/>
 
 ### index.html
 블로그 처음 홈페이지이다.

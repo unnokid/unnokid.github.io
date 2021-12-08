@@ -3,7 +3,7 @@ layout: single
 title: "Spring MVC, Security 동작원리와 처리 흐름 정리(작성중)"
 ---
 
-나사장이 추천한 사이트에 대해 필요한 지식이라고 생각해서 나름대로 간단히 정리하려고 한다.
+추천받은 사이트에 대해 정리가 잘 되어있고 필요한 지식이라고 생각해서 간단히 정리하려고 한다.
 
 참고) https://aaronryu.github.io/2021/02/14/a-tutorial-for-spring-mvc-and-security/
 
@@ -93,6 +93,127 @@ Servlet 객체 주기 관리를 위한 웹 컨테이너 `ServletContext` 최초 
 
 
 # Spring MVC Framework
+
+Java Servlet을 활용한 웹 어플리케이션 개발이 활성화되면서 여러 디자인 패턴들을 적용하여 Java 웹 개발을 더 쉽게 도와주는 Spring Framework가 등장하게 되었다. 초기에는 페이지를 동적으로 렌더링하기 위해 각 요청마다 Servlet을 할당하여 요청을 처리했다면 Spring은 각 요청마다 Servlet보다 작은 단위인 Bean을 할당하여 요청을 처리한다.
+
+- 요청을 처리하는 단위가 Servlet이라면 Servlet 관리를 위한 Servlet Container
+- 요청을 처리하는 단위가 Bean이라면 Bean 관리를 위한 Bean Container가 필요합니다.(Bean Container = Spring Container)
+
+<br/>
+<br/>
+
+Spring은 기본적으로 MVC 모델로 Model, View, Controller 세 그룹의 역할로 분리 개발을 돕는 프레임워크이기에 아무리 디자인 패턴에 지식이 부족하더라도 유지보수성, 재사용성이 뛰어난 웹 어플리케이션을 만들 수 있다.
+
+또한 데이터베이스 접근을 위한 JPA, 트랜잭션, 보안 등 웹 어플리케이션에서 필요로하는 모든것을 Bean 설정으로 제공하기 때문에 어떤 초보자여도 탄탄한 이해만 바탕이 된다면 손쉽게 만들 수 있다.
+
+<br/>
+<br/>
+
+# Spring + Web Application
+
+Spring MVC 동작 과정을 쉽게 이해하기 위해서는 MVC 와 Front Controller 패턴을 알면 됩니다.
+
+
+<br/>
+<br/>
+
+### MVC
+
+Model, View, Controller로써 유저의 요청을 효율적으로 처리하기 위한 모델입니다. 
+
+유저가 어떤 페이지를 요청하면
+
+1. 요청에 적합한 Controller 가 요청을 받아서
+2. 요청 페이지에 필요로 하는 정보인 Model을 조회/생성하고
+3. 조회/생성한 Model을 통해 최종 페이지인 View를 생성하여 유저에게 반환하는 모델
+
+<br/>
+<br/>
+
+### Front Controller 패턴
+
+요청을 받는 부분이 Controller라고 했는데 tomcat은 요청을 Servlet 이라는 Controller에서 처리하고, Spring은 요청을 Bean 이라는 Controller에서 처리한다.
+
+2-레벨 Controller의 의미는 (1) 맨 앞의 tomcat이 모든 요청을 단일 Servlet으로 먼저 받아서 요청 URL이 무엇인지에 따라
+(2)Spring의 Controller Bean에 재할당해주게 됩니다.
+
+가장 앞의 (1)tomcat 단일 Servlet을 `요청을 가장 앞에서 먼저 받는다`는 의미로 Front Controller라고 부르고, 그뒤(2) Spring Controller Bean을 실제 페이지 생성에 사용된다는 의미에서 Page Controller라고 부른다.
+
+<br/>
+<br/>
+
+# Spring MVC의 요청/처리 흐름
+
+<!-- 그림에 대한 공간이 필요함 -->
+
+tomcat 에 Spring을 연결하여 사용하려면 tomcat 설정파일인 web.xml 에 2가지 설정이 필요하다.
+
+web.xml(Deployment Description)
+- ServletContextListener 인터페이스 구현체 - Root WebApplicationContext -> Spring 공용 Bean(@Service,@Repository,@Component...)객체들을 미리 생성해 놓기 위함
+
+-모든 요청은 Front Controller 에 해당하는 단일 Servlet 객체(DispatcherServlet)가 처리한다.
+
+<br/>
+<br/>
+
+최초 구동시
+
+- tomcat 웹 어플리케이션이 최초 구동시 가장 먼저 웹 컨테이너(ServletContext)를 구동한다.
+- ServletContext 구동시 web.xml에 설정한 Spring Root WebApplicationContext가 동시에 구동된다.
+
+<br/>
+<br/>
+
+요청 처리시
+
+위 최초 구동 후 tomcat은 모든 요청을 단일 Servlet(DispatcherServlet)으로 받을 준비가 완료되었고 Spring 도 Controller Bean이 결과를 반환하기 위해 필요로하는 모든 Bean들이 Root WebApplicationContext로 준비가 완료된다. 
+
+
+Spring의 키워드는 Ioc, DI라고 할 수 있는데 간단하게 설명하면 기존에는 개발자가 new를 통해서 객체를 직접 생성하고 주입했다면
+Spring에서는 어떤 인터페이스, 클래스를 사용할것인지만 표기해놓으면 ApplicationContext(BeanFactory 상속)라고 불리는 Spinrg Container가 객체를 Bean이라는 단위로 알아서 생성하고 알아서 주입해주는 개념이다. 이렇게 Spring에서는 Java의 모든 객체를 Bean이라고 부르며 사용한다.
+
+> Spring Container = ApplicationContext
+
+Spring에서 Bean은 웹 어플리케이션 관점에서 크게 2개의 타입으로 구분 될 수 있다.
+
+그에 따라 Bean의 생명주기를 관리하는 Spring Container도 2개의 타입으로 나뉘어진다.
+
+- 요청이 들어왔을 때 적합한 처리를 위해 요청과 상관없이 모든 Servlet들이 공유하는 공용 Bean
+  - 예: @ComponentScan으로 등록된 @Service, @Repository, @Component 등
+  - 생명주기 관리: Spring Container 1(Root WebApplicationContext)
+- 요청이 들어왔을 때 할당되는 Servlet처럼 요청이 들어왔을 때만 생성하면 되는 Bean
+  - 예: @ComponentScan으로 등록된 @Controller, @Interceptor 등
+  - 생명주기 관리: Spring Container 2(Servlet WebApplicationContext)
+
+
+최초 구동시에 생성된 Spring Container 1 아래에 또 하나의 Spring Container 2가 생긴걸 볼 수 있다.
+
+Parent와 Child라고 써있는 두 컨테이너 간에 계층이 있다는 의미이며 단순히 child인 Servlet WebApplicationContext 의 Bean들은 부모인 Root WebApplicationContext의 Bean들을 참조할 수 있지만 그 반대로는 참조할 수 없음을 의미한다.
+
+Root WebApplicationContext이 모든 Servlet들이 공유하는 Bean 생명주기를 관리하는 것이라고 생각하면 된다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

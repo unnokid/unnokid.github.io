@@ -1,7 +1,7 @@
 ---
 
 layout: single
-title: "블로킹과 논블로킹/동기와 비동기(작성중)"
+title: "블로킹과 논블로킹/동기와 비동기"
 
 ---
 
@@ -93,6 +93,8 @@ A 함수가 B 함수를 호출하면 B 함수는 실행되지만 제어권은 A 
 ### 1) 동기/블로킹(Sync-Blocking) 
 
 
+<img src= "https://user-images.githubusercontent.com/58356031/146744207-5a8054ae-d09a-4ffb-9faa-ee9cc603af4b.png" width="500">
+
 <!-- 이미지 들어갈 곳 -->
 <br/>
 <br/>
@@ -110,6 +112,8 @@ A 함수가 B 함수를 호출하면 B 함수는 실행되지만 제어권은 A 
 
 ### 2) 동기/논블로킹(Sync-NonBlocking) 
 
+<img src= "https://user-images.githubusercontent.com/58356031/146762131-91dd31c8-92cd-4415-9211-dcd7243d2b04.png" width="500">
+
 <!-- 이미지 들어갈 곳 -->
 <br/>
 <br/>
@@ -124,6 +128,8 @@ A 함수가 B 함수를 호출하면 B 함수는 실행되지만 제어권은 A 
 <br/>
 
 ### 3) 비동기/논블로킹 (Async-NonBlocking) 
+
+<img src= "https://user-images.githubusercontent.com/58356031/146762572-f86bd379-d418-41b2-867a-b4dffc170af2.png" width="500">
 
 <!-- 이미지 들어갈 곳 -->
 <br/>
@@ -140,7 +146,9 @@ A 함수가 B 함수를 호출하면 B 함수는 실행되지만 제어권은 A 
 
 ### 4) 비동기/블로킹 (Async-Blocking) 
 
-<!-- 이미지 들어갈 곳 -->
+
+<img src= "https://user-images.githubusercontent.com/58356031/146762805-e550b335-86f3-4754-846e-179c6dba853b.png" width="500">
+
 <br/>
 <br/>
 

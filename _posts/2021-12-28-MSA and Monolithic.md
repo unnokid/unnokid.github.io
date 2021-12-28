@@ -10,6 +10,7 @@ MSA 아키텍처와 Monolithic Architecture를 정리해 보려고 한다.
 
 # Monolithic Architecture
 
+<img src= "https://user-images.githubusercontent.com/58356031/147543737-d5e65198-adc1-4589-8a2e-6b6e1ca793e0.png" width="250">
 <!-- 이미지 넣을 곳-->
 
 전통의 아키텍처를 지칭하는 의미로 생겨난 단어로 소프트웨어의 모든 구성요소가 한 프로젝트에 통합되어 있는 단순한 형태이다.
@@ -35,6 +36,8 @@ MSA 아키텍처와 Monolithic Architecture를 정리해 보려고 한다.
 <br/>
 
 # MSA(Micro Service Architecture)
+
+<img src= "https://user-images.githubusercontent.com/58356031/147543826-2c75608a-936a-443c-aaab-ad0d4899b7ac.png" width="400">
 
 Monolithic Architecture의 문제점을 보안하는 독립적으로 배포 가능한 각각의 기능을 수행하는 서비스로 구성된 소프트웨어 개발 기법이다.
 

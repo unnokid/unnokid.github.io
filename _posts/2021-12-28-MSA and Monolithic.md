@@ -65,6 +65,8 @@ Monolithic Architecture의 문제점을 보안하는 독립적으로 배포 가�
 
 ### MSA에서 API gateway 필요성
 
+<img src= "https://user-images.githubusercontent.com/58356031/147544267-e164072d-51f1-4758-9143-3e45ff160130.png" width="500">
+
 많은 서비스로 나누어지면 각각의 서비스에 인증/인가 처리, API 호출 기록 등등 클라이언트에서 여러 서비스에 대해 번거로운 호출을 해야되는 비효율적인 문제가 발생한다.
 
 이때 API Gateway를 사용하면 서버 앞단에서 모든 API 서버들의 엔드 포인트를 단일화해주는 또 다른 서버 역할을 한다.

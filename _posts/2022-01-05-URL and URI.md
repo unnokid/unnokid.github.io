@@ -12,6 +12,10 @@ Spring 공부도중 URL과 URI 용어를 헷갈리는 일이 발생했다.
 
 # URI와 URL
 
+<img src= "https://user-images.githubusercontent.com/58356031/148347747-7a123494-6cd1-4020-a506-dcbc692f5712.png" width="300">
+
+<br/>
+
 ### URI(uniform resource identifier)
 
 자원의 위치뿐만이 아니라 정보 리소스를 고유하게 식별하는 통합 자원 식별자이다.

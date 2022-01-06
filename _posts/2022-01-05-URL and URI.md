@@ -3,7 +3,7 @@ layout: single
 title: "URL 과 URI 차이점"
 ---
 
-Spring 공부도중 URL과 URI 용어를 헷갈리는 일이 발생했다.
+Spring 공부하던 중 URL과 URI 용어를 헷갈리는 일이 발생했다.
 
 따라서 간단하게 정리하려고 한다.
 
@@ -33,28 +33,27 @@ Spring 공부도중 URL과 URI 용어를 헷갈리는 일이 발생했다.
 
 - `https://www.naver.com`
   
-  네이버 자체 주소를 나타내고 있으므로 URL이자 URI이다.
+  네이버 자체 주소를 나타내고 있으므로 URL이면서 URI이다.
 
 
-  
 - `https://www.naver.com/images`
   
-  마찬가지로 네이버에서 이미지라는 주소경로를 나타내므로 URL이면 URI이다.
+  마찬가지로 네이버에서 이미지라는 주소 경로를 나타내므로 URL이면서 URI이다.
 
 
 - `https://www.naver.com/images/dog.jpeg`
 
-    네이버 images 디렉터리 아래의 dog.jpeg를 주소를 나타내므로 URL이면 URI이다.
+    네이버 images 디렉터리 아래의 dog.jpeg를 주소를 나타내므로 URL이면서 URI이다.
 
   
 - `https://www.naver.com/user/123`
    
-   URL 부분은 `https://www.naver.com/user` 까지이고 원하는 정보에 도달하기 위한 식별자 `/123`을 포함한 전체부분은 URI이다.
+   URL 부분은 `https://www.naver.com/user` 까지고 원하는 정보에 도달하기 위한 식별자 `/123`을 포함한 전체 부분은 URI이다.
 
   
 - `https://www.naver.com/user?id=11` 
 
-  URL 부분은 `https://www.naver.com/user` 까지이고 원하는 정보에 도달하기 위한 식별자 `?id=11`을 포함한 전체부분은 URI이다.
+  URL 부분은 `https://www.naver.com/user` 까지고 원하는 정보에 도달하기 위한 식별자 `?id=11`을 포함한 전체 부분은 URI이다.
     
 
 ### 정리

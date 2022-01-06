@@ -45,7 +45,7 @@ Spring 공부도중 URL과 URI 용어를 헷갈리는 일이 발생했다.
   
 - `https://www.naver.com/user/123`
    
-   URL 부분은 `https://www.naver.com/user` 까지이고 원하는 정보에 도달하기 위한 식별자 `123`을 포함한 전체부분은 URI이다.
+   URL 부분은 `https://www.naver.com/user` 까지이고 원하는 정보에 도달하기 위한 식별자 `/123`을 포함한 전체부분은 URI이다.
 
   
 - `https://www.naver.com/user?id=11` 

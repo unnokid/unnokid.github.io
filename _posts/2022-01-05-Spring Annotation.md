@@ -49,8 +49,9 @@ Spring에서 사용되는 에노테이션에 대해 간단하게 정리하려고
   POST요청 URL을 처리하는 방식으로 데이터의 값을 변경하거나 상태를 바꿀때 사용한다.
 
 <br/>
+<br/>
   
->-----------------
+
 - @Pathvariable
 
   URL 경로의 일부를 파라미터로 사용할 때 URL  
@@ -65,7 +66,9 @@ Spring에서 사용되는 에노테이션에 대해 간단하게 정리하려고
   
   HTTP Body에 담긴 데이터를 맵핑해서 가지고온다.
 
-<br/><br/>
+
+<br/>
+<br/>
 
 
 
@@ -86,15 +89,28 @@ Spring에서 사용되는 에노테이션에 대해 간단하게 정리하려고
 
 - @SpringBootApplication
 
-@Configuration, @EnableAutoConfiguration, @ComponentScan 3가지를 합친 것이다.
+  @Configuration, @EnableAutoConfiguration, @ComponentScan 3가지를 합친 것이다.
+
+<br/>
 
 - @Test
 
+<br/>
+
 - @SpringBootTest
+
+<br/>
 
 - @Transcational
 
+클래스나 메서드에 붙여줄 경우 해당 범위 내 메서드가 트랜잭션이 되도록 보장해준다.
+
+
+<br/>
+
 - @BeforeEach
+
+<br/>
 
 - @AfterEach
 

@@ -8,13 +8,13 @@ Redirect와 Forwarding은 JSP 환경에서 다른 페이지로 이동하는 페�
 하지만 둘이 차이점을 정확히 설명할 수 없기에 정리하려고 한다.
 
 
-#포워딩(Forwarding)
+# 포워딩(Forwarding)
 
 - 웹 컨테이너 차원에서 페이지 이동을 의미
 
 - 클라이언트에게 알리지않고 서버의 다른 자원에게 요청이 전달 됨
 
-- 따라서 Request와 Respone 객체를 공유 함
+- 따라서 Request와 Response 객체를 공유 함
 
 - ex)
 

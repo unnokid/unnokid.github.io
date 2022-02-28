@@ -7,6 +7,9 @@ Redirect와 Forwarding은 JSP 환경에서 다른 페이지로 이동하는 페�
 
 하지만 둘이 차이점을 정확히 설명할 수 없기에 정리하려고 한다.
 
+<br/>
+
+
 
 # 포워딩(Forwarding)
 
@@ -18,6 +21,10 @@ Redirect와 Forwarding은 JSP 환경에서 다른 페이지로 이동하는 페�
 
 - ex)
 
+<br/>
+<br/>
+
+
 # 리다이렉트(Redirect)
 
 - 클라이언트 요청을 처리한 후 sendRedirect() 라는 메서드가 호출되면 웹 컨테이너가 웹 브라우저에게 새로운 URL을 주며 이동하라고 함  
@@ -27,6 +34,9 @@ Redirect와 Forwarding은 JSP 환경에서 다른 페이지로 이동하는 페�
 - 따라서 첫 요청과 새로운 요청은 서로 다름(전 요청의 객체는 소멸하고 새로 만들어짐)
 
 - ex)
+
+<br/>
+<br/>
 
 # 차이점 정리
 

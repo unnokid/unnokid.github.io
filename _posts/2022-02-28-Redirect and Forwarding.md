@@ -1,4 +1,3 @@
-
 ---
 layout: single
 title: "Redirect 와Forwarding 차이점"

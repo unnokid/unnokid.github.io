@@ -5,6 +5,8 @@ title: "데브코스 후기"
 
 <!-- kdt 사진 -->
 <img src= "https://user-images.githubusercontent.com/58356031/185875912-7f7aa502-8166-4d9b-9cd9-7e61d8eff68c.png" width="400">
+<br/>
+
 프로그래머스에서 진행한 K-Digital Training 클라우드 기반 백엔드 엔지니어링 2기에 참여했고 마무리되어 후기를 정리하려고 한다.
 (2022-03-18 ~ 2022-08-17)
 
@@ -14,7 +16,8 @@ title: "데브코스 후기"
 
 <img src= "https://user-images.githubusercontent.com/58356031/185876235-501d25e7-0f6e-4d48-a1ab-6e90b6a3618c.png" width="400">
 <!-- 여기 합격 사진 -->
-<br/><br/>
+
+<br/>
 
 프로젝트를 하던 도중 백엔드 개발에 대해 공부하고 방향을 잡아줄 무언가가 필요했고 찾던 중에 
 K-Digital Training 백엔드 데브 코스를 찾게 되어서 참여하게 되었다.

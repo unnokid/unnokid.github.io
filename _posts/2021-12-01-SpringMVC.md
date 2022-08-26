@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Spring MVC, Security 동작원리와 처리 흐름 정리(작성중)"
-published: false
+published : false
 ---
 
 추천받은 사이트에 대해 정리가 잘 되어있고 필요한 지식이라고 생각해서 간단히 정리하려고 한다.
